@@ -22,7 +22,7 @@ def decodeddnn(datapath=None, verbose=False):
 class DecodedDnnDataset(DatasetBase):
     '''Decoded DNN feature dataset class.'''
 
-    __subjects = ['S1', 'S2', 'S3', 'S4', 'S5', 'Averaged']
+    __subjects = ['S1', 'S2', 'S3', 'S4', 'S5', 'Average']
     __nets = {'AlexNet' : ['conv1', 'conv2', 'conv3', 'conv4', 'conv5',
                            'fc6', 'fc7', 'fc8',
                            'norm1', 'norm2',
