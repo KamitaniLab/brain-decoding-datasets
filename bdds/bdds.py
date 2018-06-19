@@ -13,7 +13,7 @@ class DatasetBase(object):
         self._verbose = verbose
 
         if datastore is None:
-            self._datastore = os.path.join(os.environ['HOME'], '.bdset')
+            self._datastore = os.path.join(os.environ['HOME'], '.bdds')
         else:
             self._datastore = datastore
         if self._verbose:

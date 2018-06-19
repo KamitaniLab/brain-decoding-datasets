@@ -11,7 +11,7 @@ import numpy as np
 import scipy.io as sio
 import h5py
 
-from .bdset import DatasetBase
+from .bdds import DatasetBase
 
 
 def decodeddnn(datapath=None, verbose=False):
