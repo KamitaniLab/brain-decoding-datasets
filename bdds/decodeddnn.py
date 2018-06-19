@@ -1,6 +1,6 @@
 '''Decoded DNN features.'''
 
-__all__ = ['decodeddnn']
+__all__ = ['DecodedDNN']
 
 import os
 import warnings
@@ -14,12 +14,7 @@ import h5py
 from .bdds import DatasetBase
 
 
-def decodeddnn(datapath=None, verbose=False):
-    '''Returns dataset instance for decoded CNN feature.'''
-    return DecodedDnnDataset(datapath, verbose=verbose)
-
-
-class DecodedDnnDataset(DatasetBase):
+class DecodedDNN(DatasetBase):
     '''Decoded DNN feature dataset class.'''
 
     __subjects = ['S1', 'S2', 'S3', 'S4', 'S5', 'Average']
@@ -48,7 +43,7 @@ class DecodedDnnDataset(DatasetBase):
     __modes = ['decoded', 'accuracy', 'rank']
 
     def __init__(self, datastore=None, verbose=False):
-        super(DecodedDnnDataset, self).__init__(datastore=datastore, verbose=verbose)
+        super(DecodedDNN, self).__init__(datastore=datastore, verbose=verbose)
         # Default data store path
         if datastore is None:
             self._datastore = os.path.join(self._datastore, 'decodeddnn')
@@ -59,20 +54,20 @@ class DecodedDnnDataset(DatasetBase):
         # Input processing
         if mode is None: raise RuntimeError('`mode` is required.')
         
-        if subject is None: subject = DecodedDnnDataset.__subjects
+        if subject is None: subject = DecodedDNN.__subjects
         subject = self.__listize(subject)
 
-        if net is None: net = list(DecodedDnnDataset.__nets.keys())
+        if net is None: net = list(DecodedDNN.__nets.keys())
         net = self.__listize(net)
         
         net_dict = {}
         for nt in net:
-            layer_tmp = DecodedDnnDataset.__nets[nt] if layer is None else layer
+            layer_tmp = DecodedDNN.__nets[nt] if layer is None else layer
             layer_tmp = self.__listize(layer_tmp)
             net_dict.update({nt : layer_tmp})
 
         if mode == 'decoded':
-            if image is None: image = DecodedDnnDataset.__images
+            if image is None: image = DecodedDNN.__images
             image = self.__listize(image)
         else:
             if image is not None: warnings.warn('`image` is only effective for `decoded` mode.')
