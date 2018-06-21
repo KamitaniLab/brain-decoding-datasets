@@ -391,7 +391,7 @@ class DecodedDNN(DatasetBase):
             if not fs: continue
             for f in fs:
                 src = os.path.join(ds, f)
-                trg = os.path.join('data/decodeddnn',
+                trg = os.path.join(self._datastore,
                                    src.split('/decodedDNN/')[1])
                 trg_dir = os.path.dirname(trg)
                 if not os.path.exists(trg_dir): os.makedirs(trg_dir)
