@@ -18,14 +18,14 @@ import bdds
 
 dataset = bdds.GenericObjectDecoding('data/god')
 
-data_s1 = dataset.get(mode=‘fmri’, subject=‘Subject1’)  # Return fMRI data as a bdpy dataset
+data_s1 = dataset.get(mode='fmri’, subject='Subject1’)  # Return fMRI data as a bdpy dataset
 
 
 # Decoded DNN features
 
 dataset_dnn = bdds.DecodedDNN('data/decodeddnn')
 
-feature = dataset_dnn.get(mode='decoded', subject='S1', net='AlexNet', layer=‘fc8')  # Return features as a numpy array
+feature = dataset_dnn.get(mode='decoded', subject='S1', net='AlexNet', layer='fc8')  # Return features as a numpy array
 ```
 
 ## Supported datasets
