@@ -48,13 +48,7 @@ class GenericObjectDecoding(DatasetBase):
                       'ImageFeatures.h5': 'http://brainliner.jp/download/1332/downloadDataFile'}
 
     def __init__(self, datastore=None, verbose=False):
-        super(GenericObjectDecoding, self).__init__(datastore=datastore, verbose=verbose)
-        # Default data store path
-        if datastore is None:
-            self._datastore = os.path.join(self._datastore, 'god')
-
-        if not os.path.exists(self._datastore):
-            os.makedirs(self._datastore)
+        super(GenericObjectDecoding, self).__init__(datastore=datastore, verbose=verbose, default_dir='god')
 
     def _get_files(self, mode=None, subject=None):
 

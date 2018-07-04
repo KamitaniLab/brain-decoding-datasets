@@ -283,10 +283,7 @@ class DecodedDNN(DatasetBase):
                       'decodedDNN-decoded-VGG19-conv3_4.zip': 'https://ndownloader.figshare.com/files/11878445'}
 
     def __init__(self, datastore=None, verbose=False):
-        super(DecodedDNN, self).__init__(datastore=datastore, verbose=verbose)
-        # Default data store path
-        if datastore is None:
-            self._datastore = os.path.join(self._datastore, 'decodeddnn')
+        super(DecodedDNN, self).__init__(datastore=datastore, verbose=verbose, default_dir='decodeddnn')
 
     def _get_files(self, mode=None, subject=None, net=None, layer=None, image=None):
 

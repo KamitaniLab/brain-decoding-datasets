@@ -29,13 +29,7 @@ class HandShapeDecoding(DatasetBase):
     __remote_files = {'S1.h5': 'https://ndownloader.figshare.com/files/12227786'}
 
     def __init__(self, datastore=None, verbose=False):
-        super(HandShapeDecoding, self).__init__(datastore=datastore, verbose=verbose)
-        # Default data store path
-        if datastore is None:
-            self._datastore = os.path.join(self._datastore, 'handshape')
-
-        if not os.path.exists(self._datastore):
-            os.makedirs(self._datastore)
+        super(HandShapeDecoding, self).__init__(datastore=datastore, verbose=verbose, default_dir='handshape')
 
     def _get_files(self, mode='fmri', subject='S1'):
 

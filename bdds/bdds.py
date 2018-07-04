@@ -18,13 +18,17 @@ class DatasetBase(object):
 
     __metaclass__ = ABCMeta
 
-    def __init__(self, datastore=None, verbose=False):
+    def __init__(self, datastore=None, verbose=False, default_dir=''):
         self._verbose = verbose
 
         if datastore is None:
-            self._datastore = os.path.join(os.environ['HOME'], '.bdds')
+            self._datastore = os.path.join(os.environ['HOME'], '.bdds', default_dir)
         else:
             self._datastore = datastore
+
+        if not os.path.exists(self._datastore):
+            os.makedirs(self._datastore)
+
         if self._verbose:
             print('Initialize dataset.')
             print('Data store: %s' % self._datastore)
