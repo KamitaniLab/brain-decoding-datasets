@@ -8,7 +8,6 @@ import os
 import warnings
 from itertools import product
 from collections import OrderedDict
-import urllib
 import zipfile
 import shutil
 import datetime
@@ -20,6 +19,7 @@ import h5py
 import bdpy
 
 from .bdds import DatasetBase
+from .download import download_file
 
 
 class GenericObjectDecoding(DatasetBase):
@@ -93,10 +93,8 @@ class GenericObjectDecoding(DatasetBase):
     def _download_file(self, fname):
         url = GenericObjectDecoding.__remote_files[fname]
 
-        # Download file
-        print('Downloading from %s' % url)
-        urllib.urlretrieve(url,
-                           os.path.join(self._datastore, fname))
+        download_file(url, os.path.join(self._datastore, fname))
+
         return None
 
     def __listize(self, x):

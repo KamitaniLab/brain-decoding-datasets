@@ -6,7 +6,6 @@ import os
 import warnings
 from itertools import product
 from collections import OrderedDict
-import urllib
 import zipfile
 import shutil
 import datetime
@@ -16,6 +15,7 @@ import scipy.io as sio
 import h5py
 
 from .bdds import DatasetBase
+from .download import download_file
 
 
 class DecodedDNN(DatasetBase):
@@ -375,9 +375,7 @@ class DecodedDNN(DatasetBase):
         tempdir = os.path.join(self._datastore, '.temp-%s' % t)
         tempfile = os.path.join(self._datastore, '.temp-%s.zip' % t)
 
-        # Download file
-        print('Downloading from %s' % url)
-        urllib.urlretrieve(url, tempfile)
+        download_file(url, tempfile)
 
         # Unzip the file
         with zipfile.ZipFile(tempfile, 'r') as f:

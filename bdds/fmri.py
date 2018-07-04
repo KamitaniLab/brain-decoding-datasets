@@ -5,11 +5,11 @@ __all__ = ['HandShapeDecoding']
 
 
 import os
-import urllib
 
 import bdpy
 
 from .bdds import DatasetBase
+from .download import download_file
 
 
 class HandShapeDecoding(DatasetBase):
@@ -64,11 +64,8 @@ class HandShapeDecoding(DatasetBase):
     def _download_file(self, fname):
         url = HandShapeDecoding.__remote_files[fname] 
 
-        # Download file
-        print('Downloading from %s' % url)
-        urllib.urlretrieve(url,
-                           os.path.join(self._datastore, fname))
-        print('Saved %s' % os.path.join(self._datastore, fname))
+        download_file(url, os.path.join(self._datastore, fname))
+
         return None
 
     def __listize(self, x):
