@@ -3,7 +3,9 @@
 
 from abc import ABCMeta, abstractmethod
 import os
+import sys
 
+from .download import download_file
 
 class DatasetBase(object):
     '''Dataset class.
@@ -18,7 +20,7 @@ class DatasetBase(object):
 
     __metaclass__ = ABCMeta
 
-    def __init__(self, datastore=None, verbose=False, default_dir=''):
+    def __init__(self, datastore=None, verbose=False, default_dir='', auto_download=False):
         self._verbose = verbose
 
         if datastore is None:
@@ -29,9 +31,13 @@ class DatasetBase(object):
         if not os.path.exists(self._datastore):
             os.makedirs(self._datastore)
 
+        self.__auto_download = auto_download
+
         if self._verbose:
             print('Initialize dataset.')
             print('Data store: %s' % self._datastore)
+
+    # Public APIs
 
     def get(self, **kargs):
         '''Returns specified data.'''
@@ -45,7 +51,7 @@ class DatasetBase(object):
         if self._verbose:
             if return_dict: print('return_dict enabled.')
             if force_list:  print('force_list enabled.')
-        
+
         # Get data
         collection = self._get_files(**kargs)
         collection = self.__load_data(collection)
@@ -61,6 +67,8 @@ class DatasetBase(object):
 
         return output
 
+    # Private methods
+
     def __load_data(self, collection):
         '''Load data.
 
@@ -72,6 +80,13 @@ class DatasetBase(object):
             fpath = os.path.join(self._datastore, item['file'])
 
             if not os.path.exists(fpath):
+
+                if not self.__auto_download:
+                    ans = raw_input('Data file is missing. Download? (y/[n])')
+                    if ans.upper() == 'N' or ans.upper() == 'NO':
+                        print('Aborting the program.')
+                        sys.exit()
+
                 if self._verbose: print('Downloading file %s' % item['file'])
                 self._download_file(item['file'])
 
@@ -80,6 +95,8 @@ class DatasetBase(object):
             item['data'] = dat
 
         return collection
+
+    # Abstract methods
 
     @abstractmethod
     def _get_files(self, **kargs):
