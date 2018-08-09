@@ -282,8 +282,12 @@ class DecodedDNN(DatasetBase):
                       'decodedDNN-decoded-VGG19-conv3_3.zip': 'https://ndownloader.figshare.com/files/11878439',
                       'decodedDNN-decoded-VGG19-conv3_4.zip': 'https://ndownloader.figshare.com/files/11878445'}
 
-    def __init__(self, datastore=None, verbose=False):
-        super(DecodedDNN, self).__init__(datastore=datastore, verbose=verbose, default_dir='decodeddnn')
+    @property
+    def _remote_files(self):
+        return self.__remote_files
+
+    def __init__(self, datastore=None, verbose=False, auto_download=False):
+        super(DecodedDNN, self).__init__(datastore=datastore, verbose=verbose, auto_download=auto_download, default_dir='decodeddnn')
 
     def _get_files(self, mode=None, subject=None, net=None, layer=None, image=None):
 

@@ -28,8 +28,12 @@ class HandShapeDecoding(DatasetBase):
 
     __remote_files = {'S1.h5': 'https://ndownloader.figshare.com/files/12227786'}
 
-    def __init__(self, datastore=None, verbose=False):
-        super(HandShapeDecoding, self).__init__(datastore=datastore, verbose=verbose, default_dir='handshape')
+    @property
+    def _remote_files(self):
+        return self.__remote_files
+
+    def __init__(self, datastore=None, verbose=False, auto_download=False):
+        super(HandShapeDecoding, self).__init__(datastore=datastore, verbose=verbose, auto_download=auto_download, default_dir='handshape')
 
     def _get_files(self, mode='fmri', subject='S1'):
 

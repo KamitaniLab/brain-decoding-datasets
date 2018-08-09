@@ -47,8 +47,12 @@ class GenericObjectDecoding(DatasetBase):
                       'Subject5.mat': 'http://brainliner.jp/download/33/downloadSupplementaryFile',
                       'ImageFeatures.h5': 'http://brainliner.jp/download/1332/downloadDataFile'}
 
-    def __init__(self, datastore=None, verbose=False):
-        super(GenericObjectDecoding, self).__init__(datastore=datastore, verbose=verbose, default_dir='god')
+    @property
+    def _remote_files(self):
+        return self.__remote_files
+
+    def __init__(self, datastore=None, verbose=False, auto_download=False):
+        super(GenericObjectDecoding, self).__init__(datastore=datastore, verbose=verbose, auto_download=auto_download, default_dir='god')
 
     def _get_files(self, mode=None, subject=None):
 
