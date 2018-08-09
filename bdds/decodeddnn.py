@@ -373,7 +373,7 @@ class DecodedDNN(DatasetBase):
 
         t = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
         tempdir = os.path.join(self._datastore, '.temp-%s' % t)
-        tempfile = os.path.join(self._datastore, '.temp-%s.zip' % t)
+        tempfile = os.path.join(self._datastore, remote_file)
 
         download_file(url, tempfile)
 

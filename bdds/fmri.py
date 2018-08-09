@@ -62,7 +62,7 @@ class HandShapeDecoding(DatasetBase):
             raise RuntimeError('Invalid data: %s' % fpath)
 
     def _download_file(self, fname):
-        url = HandShapeDecoding.__remote_files[fname] 
+        url = HandShapeDecoding.__remote_files[fname]
 
         download_file(url, os.path.join(self._datastore, fname))
 
