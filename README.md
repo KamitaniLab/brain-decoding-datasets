@@ -20,8 +20,8 @@ Example:
 
 ``` shellsession
 $ python -m bdds.downloadall handshape --output data/handshape
-$ python -m bdds.downloadall handshape --output data/god
-$ python -m bdds.downloadall handshape --output data/decodeddnn
+$ python -m bdds.downloadall god --output data/god
+$ python -m bdds.downloadall decodeddnn --output data/decodeddnn
 ```
 
 ### Extract data
