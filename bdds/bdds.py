@@ -67,6 +67,14 @@ class DatasetBase(object):
 
         return output
 
+    def download_all(self):
+        '''Download all files.'''
+
+        for fname in self._remote_files:
+            fpath = os.path.join(self._datastore, fname)
+            if not os.path.exists(fpath):
+                self._download_file(fname)
+
     # Private methods
 
     def __load_data(self, collection):

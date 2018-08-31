@@ -368,8 +368,12 @@ class DecodedDNN(DatasetBase):
         raise RuntimeError('Invalid data: %s' % fpath)
 
     def _download_file(self, fname):
-        fstr = fname.split('/')
-        remote_file = 'decodedDNN-%s-%s-%s.zip' % (fstr[0], fstr[1], fstr[2])
+        if fname in DecodedDNN.__remote_files:
+            remote_file = fname
+        else:
+            fstr = fname.split('/')
+            remote_file = 'decodedDNN-%s-%s-%s.zip' % (fstr[0], fstr[1], fstr[2])
+
         url = DecodedDNN.__remote_files[remote_file]
 
         private_link = '76f1e5e10fdfacc5ec12'
