@@ -10,7 +10,7 @@ $ pip install git+https://github.com/KamitaniLab/brain-decoding-datasets.git
 
 ## Quick guide
 
-``` shellsession
+``` python
 import bdds
 
 
@@ -29,6 +29,18 @@ feature = dataset_dnn.get(mode='decoded', subject='S1', net='AlexNet', layer='fc
 ```
 
 See [demo.ipynb](demo.ipynb) for more details.
+
+### Download all data files
+
+``` shellsession
+$ python -m bdds.downloadall <dataset name> [--output <output directory>]
+```
+
+Example:
+
+``` shellsession
+$ python -m bdds.downloadall handshape --output data/handshape
+```
 
 ## Supported datasets
 
