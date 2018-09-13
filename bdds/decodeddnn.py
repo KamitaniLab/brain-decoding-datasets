@@ -361,9 +361,9 @@ class DecodedDNN(DatasetBase):
             if 'rank' in d: return d['rank']
         except:
             d = h5py.File(fpath)
-            if 'feat' in d: return d['feat'].value
-            if 'accuracy' in d: return d['accuracy'].value
-            if 'rank' in d: return d['rank'].value
+            if 'feat' in d: return d['feat'].value.transpose(2, 1, 0)
+            if 'accuracy' in d: return d['accuracy'].value.transpose(2, 1, 0)
+            if 'rank' in d: return d['rank'].value.transpose(2, 1, 0)
 
         raise RuntimeError('Invalid data: %s' % fpath)
 
