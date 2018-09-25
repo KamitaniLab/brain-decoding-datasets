@@ -52,7 +52,7 @@ class DecodedDNN(DatasetBase):
                 'n03710193_22225', 'n03716966_28524', 'n03761084_43533', 'n03767745_109', 'n03941684_21672',
                 'n03954393_10038', 'n04210120_9062', 'n04252077_10859', 'n04254777_16338', 'n04297750_25624',
                 'n04387400_16693', 'n04507155_21299', 'n04533802_19479', 'n04554684_53399', 'n04572121_3262']
-    __modes = ['decoded', 'accuracy', 'rank']
+    __modes = ['decoded', 'accuracy', 'rank', 'true']
 
     __remote_files = {'decodedDNN-accuracy-AlexNet-conv1.zip': 'https://ndownloader.figshare.com/files/11877389',
                       'decodedDNN-accuracy-AlexNet-conv2.zip': 'https://ndownloader.figshare.com/files/11877392',
@@ -297,6 +297,9 @@ class DecodedDNN(DatasetBase):
         if subject is None: subject = DecodedDNN.__subjects
         subject = self.__listize(subject)
 
+        if mode == 'true':
+            subject = [None]
+
         if net is None: net = list(DecodedDNN.__nets.keys())
         net = self.__listize(net)
 
@@ -306,7 +309,7 @@ class DecodedDNN(DatasetBase):
             layer_tmp = self.__listize(layer_tmp)
             net_dict.update({nt : layer_tmp})
 
-        if mode == 'decoded':
+        if mode == 'decoded' or mode == 'true':
             if image is None: image = DecodedDNN.__images
             image = self.__listize(image)
         else:
@@ -348,6 +351,8 @@ class DecodedDNN(DatasetBase):
             fpath = os.path.join(mode, net, layer, '%s-%s-%s-%s.mat' % (mode, net, layer, subject))
         elif mode == 'rank':
             fpath = os.path.join(mode, net, layer, '%s-%s-%s-%s.mat' % (mode, net, layer, subject))
+        elif mode == 'true':
+            fpath = os.path.join(mode, net, layer, '%s-%s-%s-%s.mat' % (mode, net, layer, image))
         else:
             raise ValueError('Unknown mode: %s' % mode)
 
