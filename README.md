@@ -76,7 +76,8 @@ Saved data/handshape/S1.h5
 
 ## Supported datasets
 
-- [Generic object decoding](https://github.com/KamitaniLab/GenericObjectDecoding) ('god')
+- [Generic object decoding](https://github.com/KamitaniLab/GenericObjectDecoding) ('god') #fMRI #DNN
     - [Horikawa & Kamitani (2017) Generic decoding of seen and imagined objects using hierarchical visual features. Nat Commun.](https://www.nature.com/articles/ncomms15037)
-- Decoded DNN ('decodeddnn')
-- [Hand shape decoding dataset](https://figshare.com/articles/Hand_shape_decoding_rock_paper_scissors_/6698780) ('handshape')
+- DNN features decoded from human brain activity ('decodeddnn') #fMRI #DNN
+    - [Horikawa et al. (2018) Characterization of deep neural network features by decodability from human brain activity. bioRxiv.](https://www.biorxiv.org/content/early/2018/09/23/424168)
+- [Hand shape decoding dataset](https://figshare.com/articles/Hand_shape_decoding_rock_paper_scissors_/6698780) ('handshape') #fMRI
