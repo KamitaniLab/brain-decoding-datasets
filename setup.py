@@ -6,7 +6,7 @@ from setuptools import setup
 
 if __name__ == '__main__':
     setup(name='bdds',
-          version='0.1',
+          version='1.0.0',
           description='API for brain decoding datasets',
           author='Shuntaro Aoki',
           author_email='kamitanilab.contact@gmail.com',
