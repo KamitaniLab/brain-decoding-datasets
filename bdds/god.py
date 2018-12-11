@@ -40,11 +40,11 @@ class GenericObjectDecoding(DatasetBase):
                   'Subject4',
                   'Subject5']
 
-    __remote_files = {'Subject1.mat': 'http://brainliner.jp/download/32/downloadSupplementaryFile',
-                      'Subject2.mat': 'http://brainliner.jp/download/36/downloadSupplementaryFile',
-                      'Subject3.mat': 'http://brainliner.jp/download/34/downloadSupplementaryFile',
-                      'Subject4.mat': 'http://brainliner.jp/download/35/downloadSupplementaryFile',
-                      'Subject5.mat': 'http://brainliner.jp/download/33/downloadSupplementaryFile',
+    __remote_files = {'Subject1.mat': 'https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/13663487/Subject1.mat',
+                      'Subject2.mat': 'https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/13663490/Subject2.mat',
+                      'Subject3.mat': 'https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/13663493/Subject3.mat',
+                      'Subject4.mat': 'https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/13663496/Subject4.mat',
+                      'Subject5.mat': 'https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/13663499/Subject5.mat',
                       'ImageFeatures.h5': 'http://brainliner.jp/download/1332/downloadDataFile'}
 
     @property
@@ -90,7 +90,7 @@ class GenericObjectDecoding(DatasetBase):
 
     def _load_file(self, fpath):
         try:
-            return bdpy.BData(fpath)
+            return bdpy.BData(fpath, 'HDF5')
         except:
             raise RuntimeError('Invalid data: %s' % fpath)
 
